@@ -5,6 +5,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.output_parsers import PydanticOutputParser
 from pydantic import BaseModel, Field
 from typing import Literal
+from langchain.schema.runnable import RunnableBranch, RunnableLambda
 
 load_dotenv()
 
@@ -24,8 +25,12 @@ prompt_1 = PromptTemplate(
 )
 
 prompt_2 = PromptTemplate(
-    template="Generate 5 short mcq from the following text: \n {text}",
-    input_variables=["text"],
+    template="write an appropiate response to this positive feedback: \n {feedback}",
+    input_variables=["feedback"],
+)
+prompt_3 = PromptTemplate(
+    template="write an appropiate response to this negative feedback: \n {feedback}",
+    input_variables=["feedback"],
 )
 
 model = ChatGoogleGenerativeAI(model="gemini-2.5-pro")
@@ -34,6 +39,15 @@ parser = StrOutputParser()
 
 classifier_chain = prompt_1 | model | parser_0
 
-result = classifier_chain.invoke({"feedback": "this product is the worst product"})
+branch_chain = RunnableBranch(
+    (lambda x: x.sentiment == "positive", prompt_2 | model | parser),
+    (lambda x: x.sentiment == "negative", prompt_3 | model | parser),
+    RunnableLambda(lambda x: "could not find sentiment"),
+)
 
-print("Sentiment Classification:", result.sentiment)
+
+chain = classifier_chain | branch_chain
+
+result = chain.invoke({"feedback": "this product is the worst product"})
+
+print(result)
