@@ -1,9 +1,9 @@
-from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
+import os
 from dotenv import load_dotenv
+from pydantic import BaseModel, Field
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
-from pydantic import BaseModel, Field
-import os
+from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 
 load_dotenv()
 

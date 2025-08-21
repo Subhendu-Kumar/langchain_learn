@@ -1,9 +1,9 @@
-from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 from langchain_chroma import Chroma
 from langchain.schema import Document
 from langchain.retrievers.document_compressors import LLMChainExtractor
 from langchain.retrievers.contextual_compression import ContextualCompressionRetriever
+from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 
 load_dotenv()
 

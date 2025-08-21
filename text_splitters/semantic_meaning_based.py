@@ -1,6 +1,6 @@
-from langchain_experimental.text_splitter import SemanticChunker
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from dotenv import load_dotenv
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_experimental.text_splitter import SemanticChunker
 
 load_dotenv()
 

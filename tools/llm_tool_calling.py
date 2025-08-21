@@ -1,8 +1,7 @@
-from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 from langchain_core.tools import tool
 from langchain_core.messages import HumanMessage
-import requests
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 load_dotenv()
 

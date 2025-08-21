@@ -1,7 +1,7 @@
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from dotenv import load_dotenv
 from langchain_chroma import Chroma
 from langchain.schema import Document
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 load_dotenv()
 

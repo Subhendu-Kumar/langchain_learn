@@ -1,8 +1,8 @@
-from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 from langchain_chroma import Chroma
 from langchain.schema import Document
 from langchain.retrievers.multi_query import MultiQueryRetriever
+from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 
 load_dotenv()
 
