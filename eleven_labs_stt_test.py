@@ -1,6 +1,5 @@
 import os
 from dotenv import load_dotenv
-
 from elevenlabs.client import ElevenLabs
 from langchain.prompts import PromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI

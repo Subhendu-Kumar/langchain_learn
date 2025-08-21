@@ -13,6 +13,20 @@ def multiply(a: int, b: int) -> int:
     return a * b
 
 
-gemini = ChatGoogleGenerativeAI(model="gemini-2.5-pro")
+gemini = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 
-print(gemini.invoke("hi how are you?"))
+llm_with_tools = gemini.bind_tools([multiply])
+
+query = HumanMessage("can you multiply 3 with 1000")
+
+messages = [query]
+
+result = llm_with_tools.invoke(messages)
+
+messages.append(result)
+
+tool_result = multiply.invoke(result.tool_calls[0])
+
+messages.append(tool_result)
+
+print(llm_with_tools.invoke(messages).content)
